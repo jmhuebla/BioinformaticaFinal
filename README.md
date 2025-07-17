@@ -1,43 +1,65 @@
-# Identificación de genes relacionados con la maduración sexual en la familia Salmonidae
 
-## Julissa Huebla H.
+# Análisis Filogenético de Genes Metabólicos en Salmonidae: Implicaciones en Bioingeniería y Acuicultura
 
-## Junio, 2025
+## Julissa Hu H.
+## Julio, 2025
 
+![Salmonidae Family](https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Salmonidae.jpg/800px-Salmonidae.jpg)
 
-Este proyecto tiene como objetivo identificar y analizar loci de gran efecto involucrados en la maduración sexual en peces de la familia Salmonidae. La maduración sexual en estas especies está regulada por el eje cerebro-hipófisis-gónada, un mecanismo fundamental para comprender y mejorar las estrategias de manejo en acuicultura y conservación. Este estudio busca proporcionar herramientas genómicas que permitan una gestión más eficiente de estas especies mediante el análisis de datos genéticos y transcriptómicos.
+## Tabla de Contenidos
+1. [Introducción](#introducción)  
+2. [Genes de Estudio](#genes-de-estudio)  
+   - [Tabla Comparativa](#tabla-comparativa-de-genes)  
+3. [Relevancia en Bioingeniería](#relevancia-en-bioingeniería)  
+4. [Metodología](#metodología)  
+5. [Prerequisitos](#prerequisitos)  
+6. [Resultados Esperados](#resultados-esperados)  
+7. [Referencias](#referencias)  
 
+## Introducción
 
+Este proyecto investiga la evolución molecular de cuatro genes clave en la familia Salmonidae mediante análisis filogenéticos comparativos. Los genes estudiados (clrn2, coch, exoc1l y pomc) están involucrados en importantes procesos metabólicos y presentan adaptaciones evolutivas relevantes para la acuicultura moderna.
 
-###  1. Genes del cerebro (control neuroendocrino inicial)
+## Genes de Estudio
 
-* gnrh (gonadotropin-releasing hormone)
+### Tabla Comparativa de Genes
 
-Función: Estimula la liberación de gonadotropinas desde la hipófisis.
+| Gen     | Función Biológica                                                                 | Expresión Tisular         | Relevancia en Salmonidae                                                                 |
+|---------|-----------------------------------------------------------------------------------|---------------------------|------------------------------------------------------------------------------------------|
+| **clrn2** | Mantenimiento de la estructura celular en tejidos neurosensoriales                | Branquias, línea lateral | Adaptación a diferentes salinidades y calidades de agua                                  |
+| **coch**  | Desarrollo y mantenimiento del sistema auditivo                                   | Oído interno             | Adaptación a diferentes presiones hidrodinámicas en ríos y océanos                       |
+| **exoc1l**| Regulación del tráfico vesicular y secreción celular                              | Gónadas, hígado          | Relacionado con la maduración gonadal y producción de componentes del plasma seminal     |
+| **pomc**  | Precursor de hormonas como ACTH (corticotropina) y MSH (hormona estimulante de melanocitos) | Cerebro, hipófisis | Regulación de la respuesta al estrés y patrones de coloración corporal                  |
 
-Importancia: Regula el inicio de la maduración sexual.
+## Relevancia en Bioingeniería
 
-![GNRH](https://ars.els-cdn.com/content/image/1-s2.0-S0016648019305568-gr7.jpg)
+### Aplicaciones Potenciales:
 
-### 2. Genes de la hipófisis (respuesta hormonal intermedia)
+1. **Selección Asistida por Marcadores**:
+   - Desarrollo de tests genéticos para identificar individuos con variantes favorables
+   - Optimización de programas de reproducción selectiva
 
-* lhβ (luteinizing hormone beta subunit)
+2. **Diseño de Instalaciones Acuícolas**:
+   - Adaptación de sistemas de cultivo basados en perfiles genéticos
+   - Personalización de condiciones ambientales según variantes genéticas
 
-Función: Induce la ovulación y espermiación.
+3. **Biomonitoreo Ambiental**:
+   - Uso de estos genes como biomarcadores de salud poblacional
+   - Detección temprana de estrés metabólico en poblaciones silvestres
 
-Importancia: Asociado con las etapas avanzadas de maduración sexual.
+## Metodología
 
-![lhβ](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mdpi.com%2F2076-2615%2F13%2F7%2F1250%3Ftype%3Dcheck_update%26version%3D1&psig=AOvVaw3-47Gr2oSUkFg9GFY1sunC&ust=1751171476101000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCND7upukk44DFQAAAAAdAAAAABAE)
+### Pipeline de Análisis:
 
-### 3. Genes gonadales (respuesta periférica)
+```bash
+# Paso 1: Descarga de secuencias
+datasets download gene symbol "clrn2" --ortholog "SALMONIDAE" --filename clrn2.zip
 
-* cyp19a1a (aromatasa gonadal)
+# Paso 2: Alineamiento múltiple
+muscle3.8.31_i86linux64 -in secuencias.fna -out alineado.fasta -maxiters 1 -diags
 
-Función: Convierte andrógenos en estrógenos.
-
-Importancia: Implicado en la diferenciación sexual y en la maduración ovárica.
-
-![AROMATASA](https://ars.els-cdn.com/content/image/1-s2.0-S0016648017305282-fx1.jpg)
+# Paso 3: Análisis filogenético
+iqtree -s renombrado.fasta -nt AUTO -m MFP -bb 1000
 
 
 ### Para Empezar
@@ -52,7 +74,6 @@ Este proyecto se centra en el análisis comparativo y evolutivo de genes relacio
 * FigTree v1.4.4
 * Strawberry Perl v5.40.2.1
 * ATOM Editor
-* Mesquite
 
 ### Bibliografía
 
